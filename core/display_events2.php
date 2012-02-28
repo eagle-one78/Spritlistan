@@ -36,14 +36,33 @@
                 ));
 
 
-        foreach ($ret_obj as $key) {
+        foreach ($ret_obj as $key) {            
+
+//     En query för att få ut event members             
+            $member_query = "SELECT uid, name, pic_square FROM user WHERE uid IN(SELECT uid FROM event_member WHERE eid =". $key['eid'] .") ORDER BY name DESC";
+            $members_obj = $facebook->api(array(
+                'method' => 'fql.query',
+                'query' => $member_query,
+            ));
+            foreach ($members_obj as $keys) {
+                $members_id = $keys['uid'];        
+                $members_name = $keys['name'];        
+                $members_pic = $keys['pic_square'];
+                $member_url = 'https://www.facebook.com/' . $members_name;           
+                $members_div =  '<div class="event">'. $members_image = '<a href="' . $member_url . '" target="_blank"><img src="' . $members_pic . '"/></a>';
+                $members_span = '<span>                         
+                <p class="members_names">Medlemsnamn: ' . $members_name . '</p>                                
+                </span>';
+                '</div>'; 
+                echo $members_div.$members_span;
+            }
             
             $facebook_url = 'https://www.facebook.com/events?eid=' . $key['eid'];            
             $start_time = date('M j, Y \a\t g:i A', $key['start_time']);
             $end_time = date('M j, Y \a\t g:i A', $key['end_time']);
 
-            echo '<div class="event">'. $image_div = '<a href="' . $facebook_url . '" target="_blank"><img src="' . $key['pic_square'] . '"/></a>';
-            echo '<span>
+            $events_div =  '<div class="event">'. $image_div = '<a href="' . $facebook_url . '" target="_blank"><img src="' . $key['pic_square'] . '"/></a>';
+            $span_div = '<span>
             <a href="' . $facebook_url . '" target="_blank"><h2>' . $key['name'] . '</h2></a>
             <p class="time">Start tid: ' . $start_time . '</p>
             <p class="time">Slut tid: ' . $end_time . '</p>                
@@ -51,28 +70,8 @@
             <p class="host">Host: ' . $key['host'] . '</p>';
             '<p class="description">Beskrivning: ' . $key['description'] . '</p>                
             </span>';
-            echo '</div>';
-            
-            //     En query för att få ut event members             
-            $member_query = "SELECT username, name, pic_square FROM user WHERE uid IN(SELECT uid FROM event_member WHERE eid =". $key['eid'] ." AND rsvp_status = 'attending') ORDER BY name DESC";
-            
-            $members_obj = $facebook->api(array(
-                'method' => 'fql.query',
-                'query' => $member_query,
-            ));
-            
-            foreach ($members_obj as $keys) {                        
-                $members_username = $keys['username'];        
-                $members_name = $keys['name'];        
-                $members_pic = $keys['pic_square'];                
-                $member_url = 'https://www.facebook.com/' . $members_username;           
-                
-                echo '<div class="event_member">'. $members_image = '<a href="' . $member_url . '" target="_blank"><img src="' . $members_pic . '"/></a>';
-                echo '<span>                         
-                <p class="members_names">Ansluten medlem: ' . $members_name . '</p>                                       
-                </span>';
-                echo '</div>';
-            }
+            '</div>'; 
+            echo $events_div.$span_div;
         }
     }
 

@@ -12,8 +12,8 @@
 
 function initialize() {
     var map_canvas = $("#map_canvas");
-    $("#map_canvas").css("width", "500px");
-    $("#map_canvas").css("height", "400px"); 
+    $("#map_canvas").css("width", "960px");
+    $("#map_canvas").css("height", "350px"); 
 
     var map = new google.maps.Map(map_canvas[0], {
         center: new google.maps.LatLng(59.329444, 18.068611),

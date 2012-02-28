@@ -19,16 +19,25 @@
     <head>
         <title>My Facebook Login Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" rel="stylesheet" href="styling/login_style.css"/>
         <script type="text/javascript" src="scripts/jquery_mini1-7-1.js"></script>
         <script type="text/javascript" src="scripts/google_locations.js"></script>
     </head>
     <body>
-        <div id="map_canvas"></div>  
-        <div id="fb-root"></div>
-
-        <?php            
-            include ('./core/display_events.php');
-            display_events();
-        ?>
+        <div id="container">
+            <div id="header">
+                <div id="fb-root"></div>                
+            </div>
+            <div id="content">
+                <div id="map_canvas"></div> 
+                <?php            
+                    include ('./core/display_events.php');
+                    display_events();
+                ?>     
+            </div>
+            <div id="footer">
+                
+            </div>
+        </div>
     </body>
 </html>

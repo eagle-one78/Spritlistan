@@ -6,7 +6,39 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
+body a{ 
+    text-decoration: none;
 }
 
+#container{
+    width: 960px;
+    margin: 0 auto 0 auto;
+    clear: both;
+}
+
+#header{
+    
+}
+
+#content{
+    
+}
+
+#map_canvas{
+   margin: 0 auto 10px auto;
+   clear: both;
+   border: 2px solid blue;
+}
+
+.event{
+   margin: 0 auto 10px auto;
+   clear: both;
+   border: 2px solid black;
+}
+
+.event_member{
+    float: left;
+    border: 1px solid blue;
+    margin: 2px 2px 2px 2px;
+    padding: 2px 2px 2px 2px;
+}

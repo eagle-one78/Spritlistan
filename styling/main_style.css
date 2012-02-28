@@ -6,7 +6,26 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    display: block;
+body a{ 
+    text-decoration: none;
 }
 
+#container{
+    width: 960px;
+    margin: 0 auto 0 auto;
+    clear: both;
+}
+
+#header{
+    
+}
+
+#content{
+    
+}
+
+#map_canvas{
+   margin: 0 auto 10px auto;
+   clear: both;
+   border: 2px solid blue;
+}
