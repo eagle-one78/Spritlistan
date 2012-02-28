@@ -26,7 +26,7 @@
         $user = $facebook->getUser(); //user id
 
         $fql = "SELECT eid, name,pic_square, host, start_time, end_time, location, description FROM event WHERE eid 
-        IN(SELECT eid FROM event_member WHERE uid= " . $user . ")AND end_time >= " . mktime() . " ORDER BY start_time ASC"; //hämta fler alternativ från event_member för att få se mer funktioner
+        IN(SELECT eid, rsvp_status FROM event_member WHERE uid= " . $user . " AND rsvp_status = 'attending' )AND end_time >= " . mktime() . " ORDER BY start_time ASC"; //hämta fler alternativ från event_member för att få se mer funktioner
         
         
 
